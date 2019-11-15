@@ -135,3 +135,20 @@ $ make doc
 - [`boost`](http://www.boost.org/)
 - [`open-source-parsers/jsoncpp`](https://github.com/open-source-parsers/jsoncpp)
 - [`muflihun/easyloggingpp`](https://github.com/muflihun/easyloggingpp)
+
+## 5 算法扩充
+### [common](src/common)
+在src/common文件夹下的common.h文件中，在枚举变量INTERFACEID中新增新的算法端口用于客户端的请求端口，比如INTERFACEID_×× = ×，注意里面的INTERFACEID_COUNT始终是最大值，新增的 INTERFACEID_×× 始终为INTERFACEID_COUNT减一。
+在src/common文件夹下的ConfigParams.h文件中，新增新的成员变量int detect××PoolSize = 1;可以直接放在detectYoloPoolSize变量下面。
+### [libAlgorithm](https://github.com/hbkooo/shipProject/tree/master/src/libAlgorithm)
+在src/libAlgorithm文件夹下新增新的算法实现××.cpp和××.h文件，如果算法有依赖新的库需要在该文件夹下的CMakeLists.txt文件中新增对应的依赖的库语句。
+3）libTaskModel
+在src/libTaskModel文件夹下新增Handler××.cpp和Handler××.h文件，仿照HandlerShip.cpp和HandlerShip.h的内容进行代码编写，调用在libAlgorithm文件夹下创建的新的算法××.h和××.cpp。
+在src/libTaskModel文件夹下的HandlerBase.h文件中，在最上面利用define命令宏定义一个算法方法××_METHOD_ID，用于标识在verifier内部进行网络加载时的区别，作为算法的handler_id，宏定义的此变量会在HandlerFactory.cpp中使用到。
+在src/libTaskModel文件夹下的HandlerFactory.cpp文件的create函数中，在switch语句块中新增case单元，指定在HandlerBase.h文件中定义的新的算法的标识××_METHOD_ID，并按照对应的格式返回结果。
+4）zmqServer
+在src/zmqServer文件夹下的ZmqServer.cpp文件中，在ZmqServer对象的构造函数中，根据舰船、红外、民用的检测调用过程创建对应的新的算法队列××Queue，创建这个队列时需要指定要创建的算法标识，即在HandlerBase.h文件中宏定义的××_METHOD_ID，然后将该算法队列的INTERFACE_××与dispatcher消息分发者绑定。
+
+
+
+
