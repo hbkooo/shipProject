@@ -17,6 +17,7 @@
         - [3.2 参考文档](#32-参考文档)
         - [3.3 Todo List](#33-todo-list)
     - [4 依赖项目](#4-依赖项目)
+    - [5 算法扩充](#4-算法扩充)
 
 <!-- /TOC -->
 
@@ -138,8 +139,11 @@ $ make doc
 
 ## 5 算法扩充
 ### [common](src/common)
-在src/common文件夹下的common.h文件中，在枚举变量INTERFACEID中新增新的算法端口用于客户端的请求端口，比如INTERFACEID_×× = ×，注意里面的INTERFACEID_COUNT始终是最大值，新增的 INTERFACEID_×× 始终为INTERFACEID_COUNT减一。
-在src/common文件夹下的ConfigParams.h文件中，新增新的成员变量int detect××PoolSize = 1;可以直接放在detectYoloPoolSize变量下面。
+```bash
+文件[common.h](src/common/common.h)中，在枚举变量INTERFACEID中新增新的算法端口用于客户端的请求端口
+比如INTERFACEID_×× = ×，注意里面的INTERFACEID_COUNT始终是最大值，新增的 INTERFACEID_×× 始终为INTERFACEID_COUNT减一。
+文件[ConfigParams.h](src/common/ConfigParams.h)中，新增新的成员变量int detect××PoolSize = 1;可以直接放在detectYoloPoolSize变量下面。
+```
 ### [libAlgorithm](https://github.com/hbkooo/shipProject/tree/master/src/libAlgorithm)
 在src/libAlgorithm文件夹下新增新的算法实现××.cpp和××.h文件，如果算法有依赖新的库需要在该文件夹下的CMakeLists.txt文件中新增对应的依赖的库语句。
 3）libTaskModel
