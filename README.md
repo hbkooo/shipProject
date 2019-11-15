@@ -138,20 +138,27 @@ $ make doc
 - [`muflihun/easyloggingpp`](https://github.com/muflihun/easyloggingpp)
 
 ## 5 算法扩充
+
 ### [common](src/common)
-文件[common.h](src/common/common.h)中，在枚举变量*INTERFACEID*中新增新的算法端口用于客户端的请求端口
+
+- 文件[common.h](src/common/common.h)中，在枚举变量*INTERFACEID*中新增新的算法端口用于客户端的请求端口。
 比如INTERFACEID_×× = ×，注意里面的*INTERFACEID_COUNT*始终是最大值，新增的 INTERFACEID_×× 始终为INTERFACEID_COUNT减一。
-文件[ConfigParams.h](src/common/ConfigParams.h)中，新增新的成员变量int detect××PoolSize = 1;可以直接放在detectYoloPoolSize变量下面。
+- 文件[configParams.h](src/common/ConfigParams.h)中，新增新的成员变量int detect××PoolSize = 1;可以直接放在detectYoloPoolSize变量下面。
 
 ### [libAlgorithm](src/libAlgorithm)
-在*src/libAlgorithm*文件夹下新增新的算法实现××.cpp和××.h文件
-如果算法有依赖新的库需要在该文件夹下的CMakeLists.txt文件中新增对应的依赖的库语句。
+
+- 在*src/libAlgorithm*文件夹下新增新的算法实现××.cpp和××.h文件
+- 如果算法有依赖新的库需要在该文件夹下的CMakeLists.txt文件中新增对应的依赖的库语句。
+
 ### [libTaskModel](src/libTaskModel)
-在*src/libTaskModel*文件夹下新增*Handler××.cpp*和*Handler××.h*文件,仿照*HandlerShip.cpp*和*HandlerShip.h*的内容进行代码编写，调用在*libAlgorithm*文件夹下创建的新的算法*××.h*和*××.cpp*。
-在*src/libTaskModel*文件夹下的*HandlerBase.h*文件中，在最上面利用define命令宏定义一个算法方法*××_METHOD_ID*，用于标识在verifier内部进行网络加载时的区别，作为算法的*handler_id*，宏定义的此变量会在*HandlerFactory.cpp*中使用到。
-在*src/libTaskModel*文件夹下的*HandlerFactory.cpp*文件的*create函数*中，在*switch语句块中新增case单元*，指定在*HandlerBase.h*文件中定义的新的算法的标识*××_METHOD_ID*，并按照对应的格式返回结果。
+
+- 在*src/libTaskModel*文件夹下新增*Handler××.cpp*和*Handler××.h*文件,仿照*HandlerShip.cpp*和*HandlerShip.h*的内容进行代码编写，调用在*libAlgorithm*文件夹下创建的新的算法*××.h*和*××.cpp*。
+- 在*src/libTaskModel*文件夹下的*HandlerBase.h*文件中，在最上面利用define命令宏定义一个算法方法*××_METHOD_ID*，用于标识在verifier内部进行网络加载时的区别，作为算法的*handler_id*，宏定义的此变量会在*HandlerFactory.cpp*中使用到。
+- 在*src/libTaskModel*文件夹下的*HandlerFactory.cpp*文件的*create函数*中，在*switch语句块中新增case单元*，指定在*HandlerBase.h*文件中定义的新的算法的标识*××_METHOD_ID*，并按照对应的格式返回结果。
+
 ### [zmqServer](src/zmqServer)
-文件[ZmqServer.cpp](src/zmqServer/ZmqServer.cpp)中，在*ZmqServer*对象的构造函数中，根据舰船、红外、民用的检测调用过程创建对应的新的算法队列*××Queue*，创建这个队列时需要指定要创建的算法标识，即在*HandlerBase.h*文件中宏定义的*××_METHOD_ID*，然后将该算法队列的*INTERFACE_××*与*dispatcher*消息分发者绑定。
+
+- 文件[ZmqServer.cpp](src/zmqServer/ZmqServer.cpp)中，在*ZmqServer*对象的构造函数中，根据舰船、红外、民用的检测调用过程创建对应的新的算法队列*××Queue*，创建这个队列时需要指定要创建的算法标识，即在*HandlerBase.h*文件中宏定义的*××_METHOD_ID*，然后将该算法队列的*INTERFACE_××*与*dispatcher*消息分发者绑定。
 
 
 
