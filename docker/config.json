@@ -1,0 +1,62 @@
+{
+    "AuthParams" : {
+        "auth_file" : "auth.json",
+        "license_file" : "license-key.lic",
+        "license_path" : "license/",
+        "public_key" : "rsa_public_key.pem"
+        },
+        "FaissParams" : {
+        "faissFile" : "FaissFile/faiss.bin",
+        "searchFactory" : "IDMap,Flat",
+        "useGpu" : false
+        },
+    "bucketParams" : {
+        "maxRequests" : ${MAX_REQUESTS}
+     },
+    "caffeParams" : {
+       "GPUDevices" : ${GPU_DEVICES},
+       "modelPath" : "model/",
+       "batchSize": ${BATCH_SIZE},
+       "threadsClassify" : ${CLASSIFY_THREADS},
+       "threadsDetect" : ${DETECT_THREADS},
+       "threadsFeature" : ${FEATURE_THREADS},
+       "threadsSearch" : ${SEARCH_THREADS},
+       "threadslive" : ${THREADS_LIVE},
+       "threadsperson" : ${THREADS_PERSON}
+    },
+    "faceDataParams" : {
+       "serverURL" : "${SERVER_URL}:${SERVER_PORT}",
+       "switch" : ${SWITCH},
+       "uploadTimepoint" : "${UPLOAD_TIMEPOINT}"
+    },
+    "httpParams" : {
+       "apiKey" : "${API_KEY}",
+       "httpThreads" : ${HTTP_THREADS},
+       "listenIP" : "${LISTEN_IP}",
+       "port" : ${PORT}
+    },
+    "logConfigParams" : {
+       "debugEnabled" : ${DEBUG_ENABLED},
+       "errorEnabled" : ${ERROR_ENABLED},
+       "fatalEnabled" : ${FATAL_ENABLED},
+       "infoEnabled" : ${INFO_ENABLED},
+       "traceEnabled" : ${TRACE_ENABLED},
+       "verboseEnabled" : ${VERBOSE_ENABLED},
+       "warningEnabled" : ${WARNING_ENABLED}
+    },
+    "searchToolParams" : {
+       "distance" : ${DISTANCE},
+       "redis_host": "${REDIS_HOST}",
+       "redis_port": ${REDIS_PORT},
+       "redis_db_id" : ${REDIS_DB_ID},
+       "redis_passwd" : "${REDIS_PWD}",
+       "searchThreshold" : ${SEARCH_THRESHOLD},
+       "simThreshold" : ${SIM_THRESHOLD},
+       "topK" : ${TOPK}
+    },
+    "zmqParams" : {
+       "zmqThreads" : ${ZMQ_THREADS},
+       "zmqaddr" : "tcp://${ZMQ_ADDR}:${ZMQ_PORT}"
+    }
+ }
+ 

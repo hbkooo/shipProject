@@ -1,0 +1,7 @@
+{
+	"userID": "",
+	"maxRequests": 20,
+	"switch": 1,
+	"encryptModel": true,
+	"serverURL": "oceanai.com.cn:8989"
+}

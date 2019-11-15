@@ -1,0 +1,6 @@
+{
+   "routerParams" : {
+      "back_addr" : "tcp://*:5560",
+      "front_addr" : "tcp://*:5559"
+   }
+}

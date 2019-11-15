@@ -1,0 +1,22 @@
+# use cpu 
+# FROM ubuntu:16.04
+# use gpu
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+
+RUN apt-get update && \
+    apt-get install -y cmake git vim software-properties-common  && \
+    mkdir -p /opt/verifier && \
+    cd /opt/verifier && mkdir source && cd source && \
+    git clone  http://USERNAME:PASSWORD@gitlab.oceanai.com.cn/verifier/detector.git && \
+    cd detector && \
+    bash scripts/git-lfs.deb.sh && \
+    apt-get update && \
+    apt-get install -y git-lfs && \
+    git lfs install --skip-smudge && \
+    rm .lfsconfig && \
+    git lfs pull && \
+    bash scripts/install_deps.sh && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    cd /opt/verifier && rm -rf ./source
+

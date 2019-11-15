@@ -1,0 +1,43 @@
+version: "3"
+services:
+  redis:
+    image: redis:latest
+    container_name: verifier-redis-yml
+    restart: always
+    ports:
+      - "6379"
+    networks:
+      - "verifier-redis-net"
+  verifier:
+    image: verifier-zmq-dealer-180531:gpu
+    container_name: verifier-zmq-dealer-yml
+    restart: always
+    ports:
+      - "5050:5050"
+    depends_on:
+      - redis
+    networks:
+      - "verifier-redis-net"
+    environment:
+      REDIS_HOST: verifier-redis-yml
+      REDIS_PORT: 6379
+      DETECT_THREADS: 10
+      ZMQ_ADDR: verifier-zmq-router-yml
+      MAX_REQUESTS: 20
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /data/docker/verifier-zmq-dealer/FaissFile:/opt/verifier/FaissFile
+      - /data/docker/verifier-zmq-dealer/logs:/opt/verifier/logs
+  router:
+    image: verifier-zmq-router-180531:gpu
+    container_name: verifier-zmq-router-yml
+    restart: always
+    ports:
+      - "5559:5559"
+      - "5560"
+    networks: 
+      - "verifier-redis-net"
+networks:
+    verifier-redis-net:
+ 

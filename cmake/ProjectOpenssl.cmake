@@ -1,0 +1,42 @@
+include(ExternalProject)
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
+    set(OPENSSL_CMAKE_COMMAND emcmake cmake)
+else()
+    set(OPENSSL_CMAKE_COMMAND ${CMAKE_COMMAND})
+endif()
+
+ExternalProject_Add(openssl
+        PREFIX ${CMAKE_BINARY_DIR}/deps
+        SOURCE_DIR ${CMAKE_SOURCE_DIR}/deps/openssl
+        BUILD_IN_SOURCE 1
+
+        CMAKE_COMMAND ${OPENSSL_CMAKE_COMMAND}
+        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+        -DBUILD_docs=OFF
+        -DBUILD_python=OFF
+        -DBUILD_python_layer=OFF
+        -DBUILD_SHARED_LIBS=ON
+        -DCMAKE_POSITION_INDEPENDENT_CODE=${DBUILD_SHARED_LIBS}
+        -DCMAKE_BUILD_TYPE=Release
+        CONFIGURE_COMMAND COMMAND ./config --prefix=<INSTALL_DIR>
+        BUILD_COMMAND make
+        # INSTALL_COMMAND ""
+        LOG_DOWNLOAD 1
+        LOG_CONFIGURE 1
+        LOG_BUILD 1
+        LOG_INSTALL 1
+        )
+
+ExternalProject_Get_Property(openssl INSTALL_DIR)
+add_library(Openssl STATIC IMPORTED)
+set(LIBCRYPTO_LIBRARIES ${INSTALL_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}crypto${CMAKE_STATIC_LIBRARY_SUFFIX})
+set(LIBCRYPTO_INCLUDE_DIRS ${INSTALL_DIR}/include)
+file(MAKE_DIRECTORY ${LIBCRYPTO_INCLUDE_DIRS})  # Must exist.
+set_property(TARGET Openssl PROPERTY IMPORTED_LOCATION ${LIBCRYPTO_LIBRARIES})
+set_property(TARGET Openssl PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${LIBCRYPTO_INCLUDE_DIRS})
+add_dependencies(Openssl openssl)
+unset(INSTALL_DIR)
+unset(BINARY_DIR)
+
+

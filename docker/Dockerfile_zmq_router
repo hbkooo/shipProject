@@ -1,0 +1,34 @@
+FROM ubuntu:16.04
+
+RUN apt-get update && \
+    apt-get install -y cmake git vim software-properties-common  && \
+    mkdir -p /opt/router && \
+    cd /opt/router && mkdir source && cd source && \
+    git clone  http://USERNAME:PASSWORD@gitlab.oceanai.com.cn/verifier/detector.git && \
+    cd detector && \
+    bash scripts/git-lfs.deb.sh && \
+    apt-get update && \
+    apt-get install -y git-lfs && \
+    git lfs install --skip-smudge && \
+    rm .lfsconfig && \
+    git lfs pull && \
+    bash scripts/install_deps.sh && \
+    mkdir build && \
+    cd build && \
+    cmake -DBUILD_REST=OFF .. && \  
+    make router -j"$(nproc)" && \
+    cd /opt/router && \
+    cp /opt/router/source/detector/build/bin/router . && \
+    apt-get -y remove cmake git git-lfs software-properties-common && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    cd /opt/router && rm -rf ./source
+    
+EXPOSE 5559
+EXPOSE 5560
+COPY entrypoint-router.sh /opt/router/
+COPY router.json /opt/router/
+RUN chmod +x /opt/router/entrypoint-router.sh
+WORKDIR /opt/router
+CMD [ "./entrypoint-router.sh" ]

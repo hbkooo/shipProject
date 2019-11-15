@@ -1,0 +1,40 @@
+# use cpu 
+# FROM ubuntu:16.04
+# use gpu
+# FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+FROM harbor.oceanai.com.cn/detector/verifier-base:gpu
+
+RUN mkdir -p /opt/verifier && \
+    cd /opt/verifier && mkdir source && cd source && \
+    git clone  http://USERNAME:PASSWORD@gitlab.oceanai.com.cn/verifier/detector.git && \
+    cd detector && \
+    rm .lfsconfig && \
+    git lfs pull && \
+    mkdir build && \
+    cd build && \
+    # use cpu
+    # cmake -DBUILD_CAFFE_CPU=ON .. && \
+    # use gpu
+     cmake                           \
+            -DBUILD_REST=ON        \
+            -DBUILD_CAFFE_CPU=OFF   \
+            -DBUILD_FAISS=ON        \
+            -DBUILD_LISENCE=ON      \    
+            -DBUILD_RSA=ON          \
+    .. &&  \ 
+    make verifier -j"$(nproc)" && \
+    cd /opt/verifier && \
+    cp /opt/verifier/source/detector/build/bin/verifier . && \
+    cp -r /opt/verifier/source/detector/model_encrypt . && \
+    mv /opt/verifier/model_encrypt /opt/verifier/model && \
+    cp /opt/verifier/source/detector/build/deps/lib/libcaffe.so.1.0.0 /usr/lib && \
+    apt-get -y remove cmake git git-lfs software-properties-common && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    cd /opt/verifier && rm -rf ./source
+COPY entrypoint.sh /opt/verifier/
+COPY config.json /opt/verifier/
+RUN chmod +x /opt/verifier/entrypoint.sh
+WORKDIR /opt/verifier
+CMD [ "./entrypoint.sh" ]

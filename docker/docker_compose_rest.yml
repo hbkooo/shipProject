@@ -1,0 +1,27 @@
+version: "3"
+services:
+  redis:
+    image: redis:latest
+    container_name: verifier-redis-yml
+    restart: always
+    ports:
+      - "6379"
+    networks:
+      - "verifier-redis-net"
+  verifier:
+    image: verifier-rest:gpu
+    container_name: verifier-rest-yml
+    restart: always
+    ports:
+      - "33388:33388"
+    depends_on:
+      - redis
+    networks:
+      - "verifier-redis-net"
+    environment:
+      REDIS_HOST: verifier-redis-yml
+      REDIS_PORT: 6379
+      DETECT_THREADS: 20
+networks:
+    verifier-redis-net:
+ 
