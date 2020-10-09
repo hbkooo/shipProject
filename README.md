@@ -46,6 +46,9 @@
 ```bash
 $ cd ROOT
 $ cd deps/caffe_ship/caffe_fast_rcnn
+$ mkdir build
+$ cd build
+$ cmake ..
 $ make -j8
 $ make pycaffe
 $ cd ../lib
