@@ -44,6 +44,7 @@ python2
 ### 2.2 编译运行
 
 ### 2.2.1 编译caffe
+编译caffe是要求python版本为python2.7
 ```bash
 $ cd ROOT
 $ cd deps/caffe_ship/caffe_fast_rcnn
