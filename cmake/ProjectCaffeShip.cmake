@@ -1,10 +1,11 @@
 # caffe path
 find_library(CAFFE_LIBRARY caffe ${CMAKE_SOURCE_DIR}/deps/caffe_ship/caffe_fast_rcnn/build/lib)
+set(CAFFE_LIBRARY ${CMAKE_SOURCE_DIR}/deps/caffe_ship/caffe_fast_rcnn/build/lib/libcaffe.so)
 set(CAFFE_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/caffe_ship/caffe_fast_rcnn/include)
 
 # python path
-set(PYTHON_LIBRARY /home/hbk/miniconda3/envs/python2/lib/libpython2.7.so)
-set(PYTHON_INCLUDE_DIR /home/hbk/miniconda3/envs/python2/include/python2.7)
+#set(PYTHON_LIBRARY /home/hbk/miniconda3/envs/python2/lib/libpython2.7.so)
+#set(PYTHON_INCLUDE_DIR /home/hbk/miniconda3/envs/python2/include/python2.7)
 
 # user-defined python layers and caffe python module
 set(PYTHONPATH ${CMAKE_SOURCE_DIR}/deps/caffe_ship/lib ${CMAKE_SOURCE_DIR}/deps/caffe_ship/caffe_fast_rcnn/python)
@@ -18,8 +19,8 @@ set(ROTATION_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/caffe_ship/lib/rotation )
 
 message(STATUS "CAFFE_LIBRARY ${CAFFE_LIBRARY}")
 message(STATUS "CAFFE_INCLUDE_DIR ${CAFFE_INCLUDE_DIR}")
-message(STATUS "PYTHON_LIBRARY ${PYTHON_LIBRARY}")
-message(STATUS "PYTHON_INCLUDE_DIR ${PYTHON_INCLUDE_DIR}")
+#message(STATUS "PYTHON_LIBRARY ${PYTHON_LIBRARY}")
+#message(STATUS "PYTHON_INCLUDE_DIR ${PYTHON_INCLUDE_DIR}")
 message(STATUS "PYTHONPATH ${PYTHONPATH}")
 message(STATUS "ROTATION_LIBRARY ${ROTATION_LIBRARY}")
 message(STATUS "ROTATION_INCLUDE_DIR ${ROTATION_INCLUDE_DIR}")
