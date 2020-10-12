@@ -176,21 +176,21 @@ void create_send(void *ReqSock) {
 //    string imgBase64 = dev::base64_encode(buffer, lSize);
 //    /*------------------------------Json打包-------------------------------------*/
 //
-////    //1.detect yolo (Interface_ID : 5)
+////    //1.detect yolo (Interface_ID : 1)
 ////    Json::Value root;
 ////    root["api_key"] = "";
 ////    root["interface"] = "5";  //SAR:7  SHIP:6  YOLO:5
 ////    root["image_base64"] = imgBase64;
 ////    std::string tmpstr = root.toStyledString();
 //
-////    //2.detect ship (Interface_ID : 6)
+////    //2.detect ship (Interface_ID : 2)
 ////    Json::Value root;
 ////    root["api_key"] = "";
 ////    root["interface"] = "6";  //SAR:7  SHIP:6  YOLO:5
 ////    root["image_base64"] = imgBase64;
 ////    std::string tmpstr = root.toStyledString();
 //
-////    //3.detect SAR ship (Interface_ID : 7)
+////    //3.detect SAR ship (Interface_ID : 3)
 //    Json::Value root;
 //    root["api_key"] = "";
 //    root["interface"] = 6;
@@ -242,7 +242,7 @@ void create_send(void *ReqSock) {
 
         Json::Value root;
         root["api_key"] = "";
-        root["interface"] = 6;
+        root["interface"] = 1;
         root["image_base64"] = imgBase64;
         std::string tmpstr = root.toStyledString();
 
