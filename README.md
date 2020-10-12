@@ -82,15 +82,14 @@ $ cd ROOT/build
 $ ./bin/router
 ```
 
-
-**PS:** 当配置文件不存在时（首次运行），会使用默认的配置参数，并在当前目录下自动生成配置文件`config.json`
-
-### 2.3 测试和安装
-
+### 2.2.5 测试
 ```bash
 # test, cmake with -DBUILD_TESTS=ON ..
-$ make test
+$ cd ROOT/build
+$ ./bin/zmqClient
 ```
+
+**PS:** 当配置文件不存在时（首次运行），会使用默认的配置参数，并在当前目录下自动生成配置文件`config.json`
 
 ### 2.5 版本发布
 
