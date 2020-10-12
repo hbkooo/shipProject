@@ -32,6 +32,9 @@ OPTION(BUILD_SAR "Buils with sar detect support" ON)
 OPTION(BUILD_YOLO "Build with YOLO detect support" ON)
 enable_testing()
 
+# set opencv path
+#set(OpenCV_DIR "/home/hbk/software/opencv-3.4.0/build/")
+
 # Include cmake scripts
 include(CompilerSettings)
 include(ProjectBoost)
