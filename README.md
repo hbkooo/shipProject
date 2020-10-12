@@ -39,7 +39,8 @@
 ### 2.1 安装依赖
 
 **PS:** 系统中不能同时存在`OpenCV 2`和`OpenCV 3`，如果存在需要修改`src/libFaceProcess/CMakeLists.txt`中`find_package(OpenCV 3 REQUIRED)`
-python2
+- opencv4.3
+- python2
 
 ### 2.2 编译运行
 
