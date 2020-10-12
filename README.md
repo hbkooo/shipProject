@@ -59,7 +59,7 @@ $ cp rotate_polygon_nms.so librotate_polygon_nms.so
 ```
 
 ### 2.2.2 编译verifier
-首先修改[cmake/ProjectCaffeShip.cmake](cmake/PProjectCaffeShip.cmake)文件中的个人的python路径，要求python版本为Python2
+首先修改[cmake/ProjectCaffeShip.cmake](cmake/ProjectCaffeShip.cmake)文件中的个人的python路径，要求python版本为Python2
 ```bash
 $ cd ROOT
 $ mkdir build
