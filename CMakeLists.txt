@@ -33,7 +33,9 @@ OPTION(BUILD_YOLO "Build with YOLO detect support" ON)
 enable_testing()
 
 # set opencv path
-#set(OpenCV_DIR "/home/hbk/software/opencv-3.4.0/build/")
+# set(OpenCV_DIR "/home/hbk/software/opencv-3.4.0/build/")
+# set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "/home/hbk/software/opencv-3.4.0/build/")
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "/usr/local/share/OpenCV")
 
 # Include cmake scripts
 include(CompilerSettings)
