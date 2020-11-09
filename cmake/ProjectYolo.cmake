@@ -2,7 +2,7 @@
 
 
 find_library(DARKNET_LIBRARY darknet ${CMAKE_SOURCE_DIR}/deps/yolo)
-set(DARKNET_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/yolo/)
+#set(DARKNET_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/yolo/)
 
 
 #message("hbk start in ProjectYolo.cmake : " )
