@@ -47,6 +47,7 @@
 ### 2.2.1 编译caffe
 编译caffe时要求python版本为python2.7
 ```bash
+$ conda activate python2
 $ cd ROOT
 $ cd deps/caffe_ship/caffe_fast_rcnn
 $ mkdir build
