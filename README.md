@@ -60,7 +60,14 @@ $ cd rotation
 $ cp rotate_polygon_nms.so librotate_polygon_nms.so
 ```
 
-### 2.2.2 编译verifier
+### 2.2.2 编译yolo
+```bash
+$ cd ROOT
+$ cd deps/yolo
+$ make -j8
+```
+
+### 2.2.3 编译verifier
 首先修改[cmake/ProjectCaffeShip.cmake](cmake/ProjectCaffeShip.cmake)文件中的个人的python路径，要求python版本为Python2
 ```bash
 $ cd ROOT
@@ -70,19 +77,19 @@ $ cmake ..
 $ make -j8
 ```
 
-### 2.2.3 运行服务
+### 2.2.4 运行服务
 ```bash
 $ cd ROOT/build
 $ ./bin/verifier
 ```
 
-### 2.2.4 运行路由
+### 2.2.5 运行路由
 ```bash
 $ cd ROOT/build
 $ ./bin/router
 ```
 
-### 2.2.5 测试
+### 2.2.6 测试
 ```bash
 # test, cmake with -DBUILD_TESTS=ON ..
 $ cd ROOT/build
