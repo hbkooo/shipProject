@@ -38,7 +38,7 @@
 
 ### 2.1 安装依赖
 
-**PS:** 系统中不能同时存在`OpenCV 2`和`OpenCV 3`，如果存在需要修改`src/libFaceProcess/CMakeLists.txt`中`find_package(OpenCV 3 REQUIRED)`
+**PS:** 系统中不能同时存在`OpenCV 2`和`OpenCV 3`，如果存在需要修改`ROOT/CMakeLists.txt`中`set(CMAKE_PREFIX_PATH "home/hbk/opencv-3.4.0/build" ${CMAKE_PREFIX_PATH})`设置自己的安装路径
 - opencv3.4
 - python2
 
