@@ -4,8 +4,8 @@ set(CAFFE_LIBRARY ${CMAKE_SOURCE_DIR}/deps/caffe_ship/caffe_fast_rcnn/build/lib/
 set(CAFFE_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/caffe_ship/caffe_fast_rcnn/include)
 
 # python path，修改为你个人的python环境的路径
-set(PYTHON_LIBRARY /home/hbk/miniconda3/envs/python2/lib/libpython2.7.so)
-set(PYTHON_INCLUDE_DIR /home/hbk/miniconda3/envs/python2/include/python2.7)
+set(PYTHON_LIBRARY /usr/lib/x86_64-linux-gnu/libpython2.7.so)
+set(PYTHON_INCLUDE_DIR /usr/include/python2.7)
 
 # user-defined python layers and caffe python module
 set(PYTHONPATH ${CMAKE_SOURCE_DIR}/deps/caffe_ship/lib ${CMAKE_SOURCE_DIR}/deps/caffe_ship/caffe_fast_rcnn/python)
