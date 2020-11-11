@@ -62,6 +62,14 @@ $ sudo apt-get install -y nvidia-docker2=2.0.3+docker18.03.0-1 nvidia-container-
 ```bash
 $ docker pull redis
 ```
+## HBK version
+```bash
+# build image
+$ docker build -t verifier:gpu -f dockerfile_verifier .
+$ sudo nvidia-docker run -t -i verifier:gpu /bin/bash
+```
+
+
 ## GPU
 
 ### RESTFUL版本
