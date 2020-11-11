@@ -1,0 +1,22 @@
+
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+
+RUN apt-get update && \
+    apt-get install -y cmake git vim software-properties-common wget uuid-dev autoconf automake libtool && \
+	apt-get install --no-install-recommends -y libboost-all-dev libgflags-dev libgoogle-glog-dev \
+	liblmdb-dev libhdf5-serial-dev libatlas-base-dev libprotobuf-dev libleveldb-dev libsnappy-dev \
+	libopencv-dev protobuf-compiler build-essential && \
+	wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py && \
+	pip install numpy cython scikit-image Pillow PyYAML easydict && \
+	pip install protobuf==2.6.1 && \
+    mkdir -p /opt/verifier && \
+    cd /opt/verifier && mkdir source && cd source && \
+    git clone https://github.com/hbkooo/shipProject.git && \
+	cd shipProject/deps/caffe_ship/caffe_fast_rcnn && mkdir build && cd build && cmake .. && make -j8 && make pycaffe && \
+	cp -r include/caffe/proto/ ../include/caffe/ && \
+	cd ../../lib && make && cd rotation && cp rotate_polygon_nms.so librotate_polygon_nms.so && \
+	cd ../../../yolo && make -j8 && \
+	cd ../.. && mkdir build && cd build && cmake .. && make &&\
+	echo "export PYTHONPATH=/opt/verifier/source/shipProject/deps/caffe_ship/lib:/opt/verifier/source/shipProject/deps/caffe_ship/caffe_fast_rcnn/python:$PYTHONPATH" >> ~/.bashrc \
+	#source ~/.bashrc \
+	
