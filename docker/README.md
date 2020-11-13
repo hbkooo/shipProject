@@ -66,7 +66,8 @@ $ docker pull redis
 ```bash
 # build image
 $ docker build -t verifier:gpu -f dockerfile_verifier .
-$ sudo nvidia-docker run -t -i verifier:gpu /bin/bash
+# -p 5663:5563, 把宿主机上的5663端口映射到docker上的5563端口上，之后在宿主机上直接访问5663端口即可访问verifier算法
+$ sudo nvidia-docker run -t -i -p 5663:5563 verifier:gpu /bin/bash
 ```
 
 
